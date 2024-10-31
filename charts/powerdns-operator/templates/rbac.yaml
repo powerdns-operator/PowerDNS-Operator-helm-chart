@@ -1,0 +1,209 @@
+{{- if .Values.rbac.create -}}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    {{- include "powerdns-operator.labels" . | nindent 4 }}
+  name: {{ include "powerdns-operator.fullname" . }}-leader-election-role
+  namespace: {{ .Release.Namespace }}
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    {{- include "powerdns-operator.labels" . | nindent 4 }}
+  name: {{ include "powerdns-operator.fullname" . }}-manager-role
+rules:
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - rrsets
+  - zones
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - rrsets/finalizers
+  - zones/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - rrsets/status
+  - zones/status
+  verbs:
+  - get
+  - patch
+  - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    {{- include "powerdns-operator.labels" . | nindent 4 }}
+  name: {{ include "powerdns-operator.fullname" . }}-rrset-editor-role
+rules:
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - rrsets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - rrsets/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    {{- include "powerdns-operator.labels" . | nindent 4 }}
+    rbac.authorization.k8s.io/aggregate-to-admin: "true"
+    rbac.authorization.k8s.io/aggregate-to-edit: "true"
+    rbac.authorization.k8s.io/aggregate-to-view: "true"
+  name: {{ include "powerdns-operator.fullname" . }}-rrset-viewer-role
+rules:
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - rrsets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - rrsets/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    {{- include "powerdns-operator.labels" . | nindent 4 }}
+  name: {{ include "powerdns-operator.fullname" . }}-zone-editor-role
+rules:
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - zones
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - zones/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    {{- include "powerdns-operator.labels" . | nindent 4 }}
+  name: {{ include "powerdns-operator.fullname" . }}-zone-viewer-role
+rules:
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - zones
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - zones/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    {{- include "powerdns-operator.labels" . | nindent 4 }}
+  name: {{ include "powerdns-operator.fullname" . }}-leader-election-rolebinding
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "powerdns-operator.fullname" . }}-leader-election-role
+subjects:
+- kind: ServiceAccount
+  name: {{ include "powerdns-operator.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    {{- include "powerdns-operator.labels" . | nindent 4 }}
+  name: {{ include "powerdns-operator.fullname" . }}-manager-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "powerdns-operator.fullname" . }}-manager-role
+subjects:
+- kind: ServiceAccount
+  name: {{ include "powerdns-operator.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+{{ end }}

@@ -1,0 +1,50 @@
+site_name: PowerDNS Operator Helm Chart
+site_url: https://orange-opensource.github.io/powerdns-operator/
+site_description: >-
+  Provide a Helm chart to deploy PowerDNS-Operator
+repo_url: https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart
+repo_name: PowerDNS Operator Helm Chart
+copyright: Copyright (c) Orange Business Services SA
+theme:
+  name: material
+  features:
+    - announce.dismiss # ??
+    - content.code.copy
+    - content.tooltips
+    - navigation.indexes
+    - navigation.tabs
+    - navigation.expand
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/favicon.png
+  icon:
+    logo: logo
+markdown_extensions:
+  - attr_list
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.snippets:
+      base_path: docs/snippets
+nav:
+  - Getting started: README.md
