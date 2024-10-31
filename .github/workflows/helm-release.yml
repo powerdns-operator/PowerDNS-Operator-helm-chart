@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - release-*
     paths:
       - charts/powerdns-operator/Chart.yaml
 
