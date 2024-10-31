@@ -2,6 +2,46 @@ apiVersion: v1
 entries:
   powerdns-operator:
   - annotations:
+      artifacthub.io/crds: |
+        - kind: Zone
+          version: v1alpha1
+          name: zone.dns.cav.enablers.ob
+          displayName: Zone
+          description: |
+            A Zone is a collection of records that are managed together. Zones can
+            be used to represent a domain, a subdomain, or a set of records that are
+            managed together.
+        - kind: RRset
+          version: v1alpha1
+          name: rrset.dns.cav.enablers.ob
+          displayName: RRset
+          description: |
+            An RRset is a collection of records that share the same name and type.
+            RRsets can be used to represent a collection of records that are managed
+            together.
+    apiVersion: v2
+    appVersion: 0.2.0
+    created: "2024-10-31T15:42:50.341089139Z"
+    description: Manage PowerDNS resources with Kubernetes
+    digest: a1d9fa6ab74db07075524583a6204feb14bc0b1cb439536c0c9a51fceeb2b92a
+    home: https://orange-opensource.github.io/PowerDNS-Operator-helm-chart
+    icon: https://github.com/Orange-OpenSource/PowerDNS-Operator/blob/main/docs/assets/favicon.png?raw=true
+    keywords:
+    - powerdns-operator
+    - powerdns
+    - dns
+    kubeVersion: '>= 1.21.0-0'
+    maintainers:
+    - name: antrema
+    - name: mydoomfr
+    name: powerdns-operator
+    sources:
+    - https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart
+    type: application
+    urls:
+    - https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart/releases/download/helm-chart-0.2.0/powerdns-operator-0.2.0.tgz
+    version: 0.2.0
+  - annotations:
       artifacthub.io/crds: |-
         - kind: Zone
           version: v1alpha1
@@ -41,4 +81,4 @@ entries:
     urls:
     - https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart/releases/download/helm-chart-0.1.0/powerdns-operator-0.1.0.tgz
     version: 0.1.0
-generated: "2024-10-31T15:08:49.45607345Z"
+generated: "2024-10-31T15:42:50.341101321Z"
