@@ -20,6 +20,46 @@ entries:
             RRsets can be used to represent a collection of records that are managed
             together.
     apiVersion: v2
+    appVersion: 0.3.1
+    created: "2025-01-09T09:02:14.152345759Z"
+    description: Manage PowerDNS resources with Kubernetes
+    digest: 31ec7b6e0a88149ceb9d6bedeb68b6765703aa4e7cd90717de4ed9aa7d422a70
+    home: https://orange-opensource.github.io/PowerDNS-Operator-helm-chart
+    icon: https://github.com/Orange-OpenSource/PowerDNS-Operator/blob/main/docs/assets/favicon.png?raw=true
+    keywords:
+    - powerdns-operator
+    - powerdns
+    - dns
+    kubeVersion: '>= 1.21.0-0'
+    maintainers:
+    - name: antrema
+    - name: mydoomfr
+    name: powerdns-operator
+    sources:
+    - https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart
+    type: application
+    urls:
+    - https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart/releases/download/helm-chart-0.3.1/powerdns-operator-0.3.1.tgz
+    version: 0.3.1
+  - annotations:
+      artifacthub.io/crds: |
+        - kind: Zone
+          version: v1alpha1
+          name: zone.dns.cav.enablers.ob
+          displayName: Zone
+          description: |
+            A Zone is a collection of records that are managed together. Zones can
+            be used to represent a domain, a subdomain, or a set of records that are
+            managed together.
+        - kind: RRset
+          version: v1alpha1
+          name: rrset.dns.cav.enablers.ob
+          displayName: RRset
+          description: |
+            An RRset is a collection of records that share the same name and type.
+            RRsets can be used to represent a collection of records that are managed
+            together.
+    apiVersion: v2
     appVersion: 0.3.0
     created: "2024-11-07T07:59:51.487771802Z"
     description: Manage PowerDNS resources with Kubernetes
@@ -121,4 +161,4 @@ entries:
     urls:
     - https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart/releases/download/helm-chart-0.1.0/powerdns-operator-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-07T07:59:51.487784376Z"
+generated: "2025-01-09T09:02:14.152366517Z"
