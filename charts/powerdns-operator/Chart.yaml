@@ -2,8 +2,8 @@ apiVersion: v2
 name: powerdns-operator
 description: Manage PowerDNS resources with Kubernetes
 type: application
-version: 0.3.1
-appVersion: 0.3.1
+version: 0.4.0
+appVersion: 0.4.0
 kubeVersion: '>= 1.21.0-0'
 keywords:
   - powerdns-operator
@@ -18,16 +18,22 @@ sources:
   - https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart
 annotations:
   artifacthub.io/crds: |
+    - kind: ClusterZone
+      version: v1alpha2
+      name: clusterzone.dns.cav.enablers.ob
+      displayName: ClusterZone
+      description: |
+        A ClusterZone is a portion of the DNS namespace that is managed widely by a specific
+        organization.
     - kind: Zone
-      version: v1alpha1
+      version: v1alpha2
       name: zone.dns.cav.enablers.ob
       displayName: Zone
       description: |
-        A Zone is a collection of records that are managed together. Zones can
-        be used to represent a domain, a subdomain, or a set of records that are
-        managed together.
+        A Zone is a portion of the DNS namespace that is managed in a namespace by a specific
+        organization.
     - kind: RRset
-      version: v1alpha1
+      version: v1alpha2
       name: rrset.dns.cav.enablers.ob
       displayName: RRset
       description: |
