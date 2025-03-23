@@ -58,6 +58,8 @@ should match snapshot of default values:
       - apiGroups:
           - dns.cav.enablers.ob
         resources:
+          - clusterzones
+          - clusterrrsets
           - rrsets
           - zones
         verbs:
@@ -71,6 +73,8 @@ should match snapshot of default values:
       - apiGroups:
           - dns.cav.enablers.ob
         resources:
+          - clusterzones/finalizers
+          - clusterrrsets/finalizers
           - rrsets/finalizers
           - zones/finalizers
         verbs:
@@ -78,6 +82,8 @@ should match snapshot of default values:
       - apiGroups:
           - dns.cav.enablers.ob
         resources:
+          - clusterzones/status
+          - clusterrrsets/status
           - rrsets/status
           - zones/status
         verbs:
@@ -201,6 +207,118 @@ should match snapshot of default values:
           - get
   7: |
     apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: powerdns-operator
+        app.kubernetes.io/version: 0.4.1
+        helm.sh/chart: powerdns-operator-0.4.1
+      name: RELEASE-NAME-powerdns-operator-clusterzone-editor-role
+    rules:
+      - apiGroups:
+          - dns.cav.enablers.ob
+        resources:
+          - clusterzones
+        verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+      - apiGroups:
+          - dns.cav.enablers.ob
+        resources:
+          - clusterzones/status
+        verbs:
+          - get
+  8: |
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: powerdns-operator
+        app.kubernetes.io/version: 0.4.1
+        helm.sh/chart: powerdns-operator-0.4.1
+      name: RELEASE-NAME-powerdns-operator-clusterzone-viewer-role
+    rules:
+      - apiGroups:
+          - dns.cav.enablers.ob
+        resources:
+          - clusterzones
+        verbs:
+          - get
+          - list
+          - watch
+      - apiGroups:
+          - dns.cav.enablers.ob
+        resources:
+          - clusterzones/status
+        verbs:
+          - get
+  9: |
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: powerdns-operator
+        app.kubernetes.io/version: 0.4.1
+        helm.sh/chart: powerdns-operator-0.4.1
+      name: RELEASE-NAME-powerdns-operator-clusterrrset-editor-role
+    rules:
+      - apiGroups:
+          - dns.cav.enablers.ob
+        resources:
+          - clusterrrsets
+        verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+      - apiGroups:
+          - dns.cav.enablers.ob
+        resources:
+          - clusterrrsets/status
+        verbs:
+          - get
+  10: |
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      labels:
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: powerdns-operator
+        app.kubernetes.io/version: 0.4.1
+        helm.sh/chart: powerdns-operator-0.4.1
+      name: RELEASE-NAME-powerdns-operator-clusterrrset-viewer-role
+    rules:
+      - apiGroups:
+          - dns.cav.enablers.ob
+        resources:
+          - clusterrrsets
+        verbs:
+          - get
+          - list
+          - watch
+      - apiGroups:
+          - dns.cav.enablers.ob
+        resources:
+          - clusterrrsets/status
+        verbs:
+          - get
+  11: |
+    apiVersion: rbac.authorization.k8s.io/v1
     kind: RoleBinding
     metadata:
       labels:
@@ -219,7 +337,7 @@ should match snapshot of default values:
       - kind: ServiceAccount
         name: RELEASE-NAME-powerdns-operator
         namespace: NAMESPACE
-  8: |
+  12: |
     apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRoleBinding
     metadata:

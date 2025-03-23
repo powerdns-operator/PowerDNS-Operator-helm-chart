@@ -50,6 +50,8 @@ rules:
 - apiGroups:
   - dns.cav.enablers.ob
   resources:
+  - clusterzones
+  - clusterrrsets
   - rrsets
   - zones
   verbs:
@@ -63,6 +65,8 @@ rules:
 - apiGroups:
   - dns.cav.enablers.ob
   resources:
+  - clusterzones/finalizers
+  - clusterrrsets/finalizers
   - rrsets/finalizers
   - zones/finalizers
   verbs:
@@ -70,6 +74,8 @@ rules:
 - apiGroups:
   - dns.cav.enablers.ob
   resources:
+  - clusterzones/status
+  - clusterrrsets/status
   - rrsets/status
   - zones/status
   verbs:
@@ -173,6 +179,102 @@ rules:
   - dns.cav.enablers.ob
   resources:
   - zones/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "powerdns-operator.fullname" . }}-clusterzone-editor-role
+  labels:
+    {{- include "powerdns-operator.labels" . | nindent 4 }}
+rules:
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - clusterzones
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - clusterzones/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "powerdns-operator.fullname" . }}-clusterzone-viewer-role
+  labels:
+    {{- include "powerdns-operator.labels" . | nindent 4 }}
+rules:
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - clusterzones
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - clusterzones/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "powerdns-operator.fullname" . }}-clusterrrset-editor-role
+  labels:
+    {{- include "powerdns-operator.labels" . | nindent 4 }}
+rules:
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - clusterrrsets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - clusterrrsets/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "powerdns-operator.fullname" . }}-clusterrrset-viewer-role
+  labels:
+    {{- include "powerdns-operator.labels" . | nindent 4 }}
+rules:
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - clusterrrsets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - dns.cav.enablers.ob
+  resources:
+  - clusterrrsets/status
   verbs:
   - get
 ---
