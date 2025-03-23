@@ -86,8 +86,7 @@ spec:
         {{- if .Values.credentials.existingSecret }}
         - secretRef:
             name: {{ .Values.credentials.existingSecret }}
-        {{- end }}
-        {{- if .Values.credentials.name }}
+        {{- else if .Values.credentials.name }}
         - secretRef:
             name: {{ .Values.credentials.name }}
         {{- end }}
