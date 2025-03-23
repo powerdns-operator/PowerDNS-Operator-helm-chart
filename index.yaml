@@ -26,6 +26,52 @@ entries:
             RRsets can be used to represent a collection of records that are managed
             together.
     apiVersion: v2
+    appVersion: 0.4.1
+    created: "2025-03-23T20:09:57.903461975Z"
+    description: Manage PowerDNS resources with Kubernetes
+    digest: 6fe6a037d826670b998b9366a9d5e41d98269a1e14fde0897538a79873b69f9a
+    home: https://orange-opensource.github.io/PowerDNS-Operator-helm-chart
+    icon: https://github.com/Orange-OpenSource/PowerDNS-Operator/blob/main/docs/assets/favicon.png?raw=true
+    keywords:
+    - powerdns-operator
+    - powerdns
+    - dns
+    kubeVersion: '>= 1.21.0-0'
+    maintainers:
+    - name: antrema
+    - name: mydoomfr
+    name: powerdns-operator
+    sources:
+    - https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart
+    type: application
+    urls:
+    - https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart/releases/download/helm-chart-0.4.1/powerdns-operator-0.4.1.tgz
+    version: 0.4.1
+  - annotations:
+      artifacthub.io/crds: |
+        - kind: ClusterZone
+          version: v1alpha2
+          name: clusterzone.dns.cav.enablers.ob
+          displayName: ClusterZone
+          description: |
+            A ClusterZone is a portion of the DNS namespace that is managed widely by a specific
+            organization.
+        - kind: Zone
+          version: v1alpha2
+          name: zone.dns.cav.enablers.ob
+          displayName: Zone
+          description: |
+            A Zone is a portion of the DNS namespace that is managed in a namespace by a specific
+            organization.
+        - kind: RRset
+          version: v1alpha2
+          name: rrset.dns.cav.enablers.ob
+          displayName: RRset
+          description: |
+            An RRset is a collection of records that share the same name and type.
+            RRsets can be used to represent a collection of records that are managed
+            together.
+    apiVersion: v2
     appVersion: 0.4.0
     created: "2025-03-21T14:28:53.735877077Z"
     description: Manage PowerDNS resources with Kubernetes
@@ -207,4 +253,4 @@ entries:
     urls:
     - https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart/releases/download/helm-chart-0.1.0/powerdns-operator-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-21T14:28:53.735915969Z"
+generated: "2025-03-23T20:09:57.903487853Z"
