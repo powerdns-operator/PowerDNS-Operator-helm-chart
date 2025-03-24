@@ -2,8 +2,8 @@ apiVersion: v2
 name: powerdns-operator
 description: Manage PowerDNS resources with Kubernetes
 type: application
-version: 0.4.1
-appVersion: 0.4.1
+version: 0.4.2
+appVersion: 0.4.2
 kubeVersion: '>= 1.21.0-0'
 keywords:
   - powerdns-operator
@@ -32,6 +32,14 @@ annotations:
       description: |
         A Zone is a portion of the DNS namespace that is managed in a namespace by a specific
         organization.
+    - kind: ClusterRRset
+      version: v1alpha2
+      name: clusterrrset.dns.cav.enablers.ob
+      displayName: ClusterRRset
+      description: |
+        An ClusterRRset is a collection of records that share the same name and type.
+        RRsets can be used to represent a collection of records that are managed
+        together.
     - kind: RRset
       version: v1alpha2
       name: rrset.dns.cav.enablers.ob

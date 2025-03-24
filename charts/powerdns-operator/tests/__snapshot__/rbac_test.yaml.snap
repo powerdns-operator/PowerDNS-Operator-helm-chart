@@ -7,8 +7,8 @@ should match snapshot of default values:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.4.1
-        helm.sh/chart: powerdns-operator-0.4.1
+        app.kubernetes.io/version: 0.4.2
+        helm.sh/chart: powerdns-operator-0.4.2
       name: RELEASE-NAME-powerdns-operator-leader-election-role
       namespace: NAMESPACE
     rules:
@@ -51,8 +51,8 @@ should match snapshot of default values:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.4.1
-        helm.sh/chart: powerdns-operator-0.4.1
+        app.kubernetes.io/version: 0.4.2
+        helm.sh/chart: powerdns-operator-0.4.2
       name: RELEASE-NAME-powerdns-operator-manager-role
     rules:
       - apiGroups:
@@ -98,8 +98,8 @@ should match snapshot of default values:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.4.1
-        helm.sh/chart: powerdns-operator-0.4.1
+        app.kubernetes.io/version: 0.4.2
+        helm.sh/chart: powerdns-operator-0.4.2
       name: RELEASE-NAME-powerdns-operator-rrset-editor-role
     rules:
       - apiGroups:
@@ -128,8 +128,8 @@ should match snapshot of default values:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.4.1
-        helm.sh/chart: powerdns-operator-0.4.1
+        app.kubernetes.io/version: 0.4.2
+        helm.sh/chart: powerdns-operator-0.4.2
         rbac.authorization.k8s.io/aggregate-to-admin: "true"
         rbac.authorization.k8s.io/aggregate-to-edit: "true"
         rbac.authorization.k8s.io/aggregate-to-view: "true"
@@ -157,8 +157,8 @@ should match snapshot of default values:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.4.1
-        helm.sh/chart: powerdns-operator-0.4.1
+        app.kubernetes.io/version: 0.4.2
+        helm.sh/chart: powerdns-operator-0.4.2
       name: RELEASE-NAME-powerdns-operator-zone-editor-role
     rules:
       - apiGroups:
@@ -187,8 +187,8 @@ should match snapshot of default values:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.4.1
-        helm.sh/chart: powerdns-operator-0.4.1
+        app.kubernetes.io/version: 0.4.2
+        helm.sh/chart: powerdns-operator-0.4.2
       name: RELEASE-NAME-powerdns-operator-zone-viewer-role
     rules:
       - apiGroups:
@@ -213,8 +213,8 @@ should match snapshot of default values:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.4.1
-        helm.sh/chart: powerdns-operator-0.4.1
+        app.kubernetes.io/version: 0.4.2
+        helm.sh/chart: powerdns-operator-0.4.2
       name: RELEASE-NAME-powerdns-operator-clusterzone-editor-role
     rules:
       - apiGroups:
@@ -243,8 +243,8 @@ should match snapshot of default values:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.4.1
-        helm.sh/chart: powerdns-operator-0.4.1
+        app.kubernetes.io/version: 0.4.2
+        helm.sh/chart: powerdns-operator-0.4.2
       name: RELEASE-NAME-powerdns-operator-clusterzone-viewer-role
     rules:
       - apiGroups:
@@ -269,8 +269,8 @@ should match snapshot of default values:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.4.1
-        helm.sh/chart: powerdns-operator-0.4.1
+        app.kubernetes.io/version: 0.4.2
+        helm.sh/chart: powerdns-operator-0.4.2
       name: RELEASE-NAME-powerdns-operator-clusterrrset-editor-role
     rules:
       - apiGroups:
@@ -299,8 +299,8 @@ should match snapshot of default values:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.4.1
-        helm.sh/chart: powerdns-operator-0.4.1
+        app.kubernetes.io/version: 0.4.2
+        helm.sh/chart: powerdns-operator-0.4.2
       name: RELEASE-NAME-powerdns-operator-clusterrrset-viewer-role
     rules:
       - apiGroups:
@@ -325,8 +325,8 @@ should match snapshot of default values:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.4.1
-        helm.sh/chart: powerdns-operator-0.4.1
+        app.kubernetes.io/version: 0.4.2
+        helm.sh/chart: powerdns-operator-0.4.2
       name: RELEASE-NAME-powerdns-operator-leader-election-rolebinding
       namespace: NAMESPACE
     roleRef:
@@ -345,8 +345,8 @@ should match snapshot of default values:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.4.1
-        helm.sh/chart: powerdns-operator-0.4.1
+        app.kubernetes.io/version: 0.4.2
+        helm.sh/chart: powerdns-operator-0.4.2
       name: RELEASE-NAME-powerdns-operator-manager-rolebinding
     roleRef:
       apiGroup: rbac.authorization.k8s.io
