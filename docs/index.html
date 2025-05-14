@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://orange-opensource.github.io/powerdns-operator/">
+        <link rel="canonical" href="https://powerdns-operator.github.io/powerdns-operator/">
       
       
       
@@ -198,7 +198,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/powerdns-operator/PowerDNS-Operator-helm-chart" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
@@ -279,7 +279,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/powerdns-operator/PowerDNS-Operator-helm-chart" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
@@ -472,12 +472,12 @@
 <p><img alt="Type: application" src="https://img.shields.io/badge/Type-application-informational?style=flat-square" /> <img alt="Version: 0.4.2" src="https://img.shields.io/badge/Version-0.4.2-informational?style=flat-square" /></p>
 <p>Manage PowerDNS resources with Kubernetes</p>
 <h2 id="tldr">TL;DR</h2>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>orange-opensource<span class="w"> </span>https://orange-opensource.github.io/PowerDNS-Operator-helm-chart
-helm<span class="w"> </span>install<span class="w"> </span>powerdns-operator<span class="w"> </span>orange-opensource/powerdns-operator
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>powerdns-operator<span class="w"> </span>https://powerdns-operator.github.io/PowerDNS-Operator-helm-chart
+helm<span class="w"> </span>install<span class="w"> </span>powerdns-operator<span class="w"> </span>powerdns-operator/powerdns-operator
 </code></pre></div>
 <h2 id="installing-the-chart">Installing the Chart</h2>
 <p>To install the chart with the release name <code>powerdns-operator</code>:
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>powerdns-operator<span class="w"> </span>orange-opensource/powerdns-operator
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>powerdns-operator<span class="w"> </span>powerdns-operator/powerdns-operator
 </code></pre></div></p>
 <h2 id="uninstalling-the-chart">Uninstalling the Chart</h2>
 <p>To uninstall the <code>powerdns-operator</code> deployment:
@@ -606,7 +606,7 @@ The command removes all the Kubernetes components associated with the chart and 
 <tr>
 <td>image.repository</td>
 <td>string</td>
-<td><code>"ghcr.io/orange-opensource/powerdns-operator"</code></td>
+<td><code>"ghcr.io/powerdns-operator/powerdns-operator"</code></td>
 <td></td>
 </tr>
 <tr>
@@ -970,7 +970,9 @@ The command removes all the Kubernetes components associated with the chart and 
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright (c) Orange Business Services SA
+      Copyright (c) PowerDNS Operator
+Copyright (c) 2025 Orange Business Services SA
+
     </div>
   
   
