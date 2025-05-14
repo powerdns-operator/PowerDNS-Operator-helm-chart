@@ -57,12 +57,12 @@ tests:
           value: "--metrics-bind-address=:8888"
   - it: should override image version
     set:
-      image.repository: ghcr.io/orange-opensource/powerdns-operator
+      image.repository: ghcr.io/powerdns-operator/powerdns-operator
       image.tag: 0.2.0
     asserts:
       - equal:
           path: spec.template.spec.containers[0].image
-          value: ghcr.io/orange-opensource/powerdns-operator:v0.2.0
+          value: ghcr.io/powerdns-operator/powerdns-operator:v0.2.0
   - it: should override resources
     set:
       resources:

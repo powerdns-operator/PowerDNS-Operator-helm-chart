@@ -1,10 +1,12 @@
 site_name: PowerDNS Operator Helm Chart
-site_url: https://orange-opensource.github.io/powerdns-operator/
+site_url: https://powerdns-operator.github.io/powerdns-operator/
 site_description: >-
   Provide a Helm chart to deploy PowerDNS-Operator
-repo_url: https://github.com/Orange-OpenSource/PowerDNS-Operator-helm-chart
+repo_url: https://github.com/powerdns-operator/PowerDNS-Operator-helm-chart
 repo_name: PowerDNS Operator Helm Chart
-copyright: Copyright (c) Orange Business Services SA
+copyright: |
+  Copyright (c) PowerDNS Operator
+  Copyright (c) 2025 Orange Business Services SA
 theme:
   name: material
   features:
