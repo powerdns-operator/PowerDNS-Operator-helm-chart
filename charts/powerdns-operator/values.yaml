@@ -12,7 +12,8 @@ global:
       # disabled - No modification applied.
       adaptSecurityContext: auto
 
-replicaCount: 1  # we do not support more than 1 replica
+# -- We do not support more than 1 replica
+replicaCount: 1
 
 commonLabels: {}
 
@@ -49,7 +50,7 @@ serviceAccount:
   annotations: {}
 
 image:
-  repository: "ghcr.io/orange-opensource/powerdns-operator"
+  repository: "ghcr.io/powerdns-operator/powerdns-operator"
   pullPolicy: "IfNotPresent"
   tag: ""
 

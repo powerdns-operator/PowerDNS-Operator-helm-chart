@@ -8,14 +8,14 @@ Manage PowerDNS resources with Kubernetes
 
 ## TL;DR
 ```bash
-helm repo add orange-opensource https://orange-opensource.github.io/PowerDNS-Operator-helm-chart
-helm install powerdns-operator orange-opensource/powerdns-operator
+helm repo add powerdns-operator https://powerdns-operator.github.io/PowerDNS-Operator-helm-chart
+helm install powerdns-operator powerdns-operator/powerdns-operator
 ```
 
 ## Installing the Chart
 To install the chart with the release name `powerdns-operator`:
 ```bash
-helm install powerdns-operator orange-opensource/powerdns-operator
+helm install powerdns-operator powerdns-operator/powerdns-operator
 ```
 
 ## Uninstalling the Chart
@@ -47,7 +47,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | global.topologySpreadConstraints | list | `[]` |  |
 | hostNetwork | bool | `false` | Run the controller on the host network |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
-| image.repository | string | `"ghcr.io/orange-opensource/powerdns-operator"` |  |
+| image.repository | string | `"ghcr.io/powerdns-operator/powerdns-operator"` |  |
 | image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` | Optional array of imagePullSecrets containing private registry credentials # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/ |
 | labels | object | `{}` | Extra Labels to add to the controller deployment. |
