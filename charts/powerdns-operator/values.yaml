@@ -23,12 +23,16 @@ credentials:
   # -- Specifies the secret name to create if `existingSecret` is empty.
   name: "powerdns-api-credentials"
   data:
-    # -- Specifies the PowerDNS API URL
-    PDNS_API_URL: "https://powerdns.example.local:8081"
     # -- Specifies the PowerDNS API key used to authenticate
     PDNS_API_KEY: "secret"
-    # -- Specifies the PowerDNS VHOST
-    PDNS_API_VHOST: "localhost"
+
+# PowerDNS API connection details
+api:
+  # -- Specifies the PowerDNS API URL
+  url: "https://powerdns.example.local:8081"
+
+  # -- Specifies the PowerDNS VHOST
+  vhost: "localhost"
 
 rbac:
   create: true

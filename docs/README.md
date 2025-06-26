@@ -31,10 +31,10 @@ The command removes all the Kubernetes components associated with the chart and 
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | annotations | object | `{}` | Annotations to add to the controller deployment. |
+| api.url | string | `"https://powerdns.example.local:8081"` | Specifies the PowerDNS API URL |
+| api.vhost | string | `"localhost"` | Specifies the PowerDNS VHOST |
 | commonLabels | object | `{}` |  |
 | credentials.data.PDNS_API_KEY | string | `"secret"` | Specifies the PowerDNS API key used to authenticate |
-| credentials.data.PDNS_API_URL | string | `"https://powerdns.example.local:8081"` | Specifies the PowerDNS API URL |
-| credentials.data.PDNS_API_VHOST | string | `"localhost"` | Specifies the PowerDNS VHOST |
 | credentials.existingSecret | string | `""` | Specifies whether to use an existing secret. |
 | credentials.name | string | `"powerdns-api-credentials"` | Specifies the secret name to create if `existingSecret` is empty. |
 | dnsConfig | object | `{}` | Specifies `dnsOptions` to deployment |
@@ -84,7 +84,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | readinessProbe.httpGet.port | int | `8081` |  |
 | readinessProbe.initialDelaySeconds | int | `5` |  |
 | readinessProbe.periodSeconds | int | `10` |  |
-| replicaCount | int | `1` |  |
+| replicaCount | int | `1` | We do not support more than 1 replica |
 | resources.limits.cpu | string | `"500m"` |  |
 | resources.limits.memory | string | `"128Mi"` |  |
 | resources.requests.cpu | string | `"10m"` |  |
