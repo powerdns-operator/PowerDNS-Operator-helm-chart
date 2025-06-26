@@ -35,6 +35,7 @@ should match snapshot of default values:
                 - --metrics-bind-address=:8080
                 - --pdns-api-url=https://powerdns.example.local:8081
                 - --pdns-api-vhost=localhost
+                - --pdns-api-timeout="10"
               command:
                 - /manager
               envFrom:
