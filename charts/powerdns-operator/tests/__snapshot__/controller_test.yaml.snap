@@ -33,6 +33,9 @@ should match snapshot of default values:
                 - --leader-elect
                 - --health-probe-bind-address=:8081
                 - --metrics-bind-address=:8080
+                - --pdns-api-url=https://powerdns.example.local:8081
+                - --pdns-api-vhost=localhost
+                - --pdns-api-timeout="10"
               command:
                 - /manager
               envFrom:

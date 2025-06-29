@@ -75,6 +75,15 @@ spec:
         - --leader-elect
         - --health-probe-bind-address=:8081
         - --metrics-bind-address=:{{ .Values.metrics.service.port }}
+        {{- if .Values.api.url }}
+        - --pdns-api-url={{ .Values.api.url }}
+        {{- end }}
+        {{- if .Values.api.vhost }}
+        - --pdns-api-vhost={{ .Values.api.vhost }}
+        {{- end }}
+        {{- if .Values.api.timeoutSeconds }}
+        - --pdns-api-timeout="{{ .Values.api.timeoutSeconds }}"
+        {{- end }}
         ports:
         - containerPort: {{ .Values.metrics.service.port }}
           protocol: TCP
