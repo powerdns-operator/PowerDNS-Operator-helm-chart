@@ -82,7 +82,7 @@ spec:
         - --pdns-api-vhost={{ .Values.api.vhost }}
         {{- end }}
         {{- if .Values.api.timeoutSeconds }}
-        - --pdns-api-timeout="{{ .Values.api.timeoutSeconds }}"
+        - --pdns-api-timeout={{ .Values.api.timeoutSeconds }}
         {{- end }}
         ports:
         - containerPort: {{ .Values.metrics.service.port }}

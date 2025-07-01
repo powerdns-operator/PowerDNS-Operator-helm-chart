@@ -31,7 +31,7 @@ The command removes all the Kubernetes components associated with the chart and 
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | annotations | object | `{}` | Annotations to add to the controller deployment. |
-| api.timeoutSeconds | string | `"10"` | Specifies timeout to connect to PowerDNS (in seconds) |
+| api.timeoutSeconds | int | `10` | Specifies timeout to connect to PowerDNS (in seconds) |
 | api.url | string | `"https://powerdns.example.local:8081"` | Specifies the PowerDNS API URL |
 | api.vhost | string | `"localhost"` | Specifies the PowerDNS VHOST |
 | commonLabels | object | `{}` |  |
