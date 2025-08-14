@@ -5,6 +5,30 @@ tests:
   - it: should match snapshot of default values
     asserts:
       - matchSnapshot: {}
+  - it: should match snapshot with CA certificate configuration
+    set:
+      api:
+        tls:
+          caCert: |
+            -----BEGIN CERTIFICATE-----
+            MIICxjCCAa4CAQAwDQYJKoZIhvcNAQEFBQAwEzERMA8GA1UEAwwIVGVzdCBDQSAwHhcN
+            -----END CERTIFICATE-----
+    asserts:
+      - matchSnapshot: {}
+  - it: should match snapshot with existing ConfigMap configuration
+    set:
+      api:
+        tls:
+          existingConfigMap: "my-ca-configmap"
+    asserts:
+      - matchSnapshot: {}
+  - it: should match snapshot with insecure TLS configuration
+    set:
+      api:
+        tls:
+          insecure: true
+    asserts:
+      - matchSnapshot: {}
   - it: should set imagePullPolicy to Always
     set:
       image.pullPolicy: Always
@@ -245,3 +269,112 @@ tests:
             nameservers:
               - 1.1.1.1
               - 8.8.8.8
+  - it: should add CA certificate argument when caCert is provided
+    set:
+      api:
+        tls:
+          caCert: "test-certificate-content"
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].args
+          content: "--pdns-api-ca-path=/certs/ca.crt"
+  - it: should add CA certificate argument when existingConfigMap is provided
+    set:
+      api:
+        tls:
+          existingConfigMap: "my-ca-configmap"
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].args
+          content: "--pdns-api-ca-path=/certs/ca.crt"
+  - it: should add CA certificate argument with custom configMapKey
+    set:
+      api:
+        tls:
+          caCert: "test-cert"
+          configMapKey: "custom-ca.crt"
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].args
+          content: "--pdns-api-ca-path=/certs/custom-ca.crt"
+  - it: should add insecure TLS argument when insecure is true
+    set:
+      api:
+        tls:
+          insecure: true
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].args
+          content: "--pdns-api-insecure"
+  - it: should not add CA certificate argument when no TLS config is provided
+    asserts:
+      - notContains:
+          path: spec.template.spec.containers[0].args
+          content: "--pdns-api-ca-path"
+  - it: should not add insecure TLS argument when insecure is false
+    set:
+      api:
+        tls:
+          insecure: false
+    asserts:
+      - notContains:
+          path: spec.template.spec.containers[0].args
+          content: "--pdns-api-insecure"
+  - it: should mount CA certificate volume when caCert is provided
+    set:
+      api:
+        tls:
+          caCert: "test-certificate-content"
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: ca-cert
+            mountPath: /certs
+            readOnly: true
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: ca-cert
+            configMap:
+              name: RELEASE-NAME-powerdns-operator-ca-cert
+              items:
+              - key: ca.crt
+                path: ca.crt
+  - it: should mount CA certificate volume when existingConfigMap is provided
+    set:
+      api:
+        tls:
+          existingConfigMap: "my-existing-ca"
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].volumeMounts
+          content:
+            name: ca-cert
+            mountPath: /certs
+            readOnly: true
+      - contains:
+          path: spec.template.spec.volumes
+          content:
+            name: ca-cert
+            configMap:
+              name: my-existing-ca
+              items:
+              - key: ca.crt
+                path: ca.crt
+  - it: should not mount CA certificate volume when no TLS config is provided
+    asserts:
+      - notExists:
+          path: spec.template.spec.containers[0].volumeMounts
+      - notExists:
+          path: spec.template.spec.volumes
+  - it: should not mount CA certificate volume when only insecure is set
+    set:
+      api:
+        tls:
+          insecure: true
+    asserts:
+      - notExists:
+          path: spec.template.spec.containers[0].volumeMounts
+      - notExists:
+          path: spec.template.spec.volumes

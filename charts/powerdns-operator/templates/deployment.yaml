@@ -84,6 +84,12 @@ spec:
         {{- if .Values.api.timeoutSeconds }}
         - --pdns-api-timeout={{ .Values.api.timeoutSeconds }}
         {{- end }}
+        {{- if or .Values.api.tls.caCert .Values.api.tls.existingConfigMap }}
+        - --pdns-api-ca-path=/certs/{{ .Values.api.tls.configMapKey }}
+        {{- end }}
+        {{- if .Values.api.tls.insecure }}
+        - --pdns-api-insecure
+        {{- end }}
         ports:
         - containerPort: {{ .Values.metrics.service.port }}
           protocol: TCP
@@ -120,3 +126,22 @@ spec:
           {{- include "powerdns-operator.renderSecurityContext" (dict "securityContext" . "context" $) | nindent 10 }}
         {{- end }}
         {{- end }}
+        {{- if or .Values.api.tls.caCert .Values.api.tls.existingConfigMap }}
+        volumeMounts:
+        - name: ca-cert
+          mountPath: /certs
+          readOnly: true
+        {{- end }}
+      {{- if or .Values.api.tls.caCert .Values.api.tls.existingConfigMap }}
+      volumes:
+      - name: ca-cert
+        configMap:
+          {{- if .Values.api.tls.existingConfigMap }}
+          name: {{ .Values.api.tls.existingConfigMap }}
+          {{- else }}
+          name: {{ include "powerdns-operator.fullname" . }}-ca-cert
+          {{- end }}
+          items:
+          - key: {{ .Values.api.tls.configMapKey }}
+            path: {{ .Values.api.tls.configMapKey }}
+      {{- end }}

@@ -37,6 +37,17 @@ api:
   # -- Specifies timeout to connect to PowerDNS (in seconds)
   timeoutSeconds: 10
 
+  # -- Custom CA certificate for validating HTTPS connections to the PowerDNS API (optional)
+  tls:
+    # -- Name of existing ConfigMap containing the CA certificate
+    existingConfigMap: ""
+    # -- ConfigMap key containing the CA certificate (default: ca.crt)
+    configMapKey: "ca.crt"
+    # -- CA certificate content (only used if existingConfigMap is empty)
+    caCert: ""
+    # -- Skip PowerDNS API TLS certificate verification
+    insecure: false
+
 rbac:
   create: true
 

@@ -1,0 +1,72 @@
+suite: test configmap for TLS CA certificates
+templates:
+  - configmap.yaml
+tests:
+  - it: should create a ConfigMap when caCert is provided
+    set:
+      api:
+        tls:
+          caCert: |
+            -----BEGIN CERTIFICATE-----
+            MIICxjCCAa4CAQAwDQYJKoZIhvcNAQEFBQAwEzERMA8GA1UEAwwIVGVzdCBDQSAwHhcN
+            -----END CERTIFICATE-----
+    asserts:
+      - containsDocument:
+          kind: ConfigMap
+          apiVersion: v1
+      - equal:
+          path: metadata.name
+          value: RELEASE-NAME-powerdns-operator-ca-cert
+      - equal:
+          path: data["ca.crt"]
+          value: |
+            -----BEGIN CERTIFICATE-----
+            MIICxjCCAa4CAQAwDQYJKoZIhvcNAQEFBQAwEzERMA8GA1UEAwwIVGVzdCBDQSAwHhcN
+            -----END CERTIFICATE-----
+
+  - it: should create a ConfigMap with custom configMapKey
+    set:
+      api:
+        tls:
+          caCert: "test-certificate-content"
+          configMapKey: "custom-ca.crt"
+    asserts:
+      - containsDocument:
+          kind: ConfigMap
+          apiVersion: v1
+      - equal:
+          path: data["custom-ca.crt"]
+          value: "test-certificate-content"
+
+  - it: should not create a ConfigMap when existingConfigMap is specified
+    set:
+      api:
+        tls:
+          existingConfigMap: "my-existing-ca-configmap"
+          caCert: "some-cert-content"
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: should not create a ConfigMap when no caCert is provided
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: should not create a ConfigMap when caCert is empty
+    set:
+      api:
+        tls:
+          caCert: ""
+    asserts:
+      - hasDocuments:
+          count: 0
+
+  - it: should not create a ConfigMap when only insecure is set
+    set:
+      api:
+        tls:
+          insecure: true
+    asserts:
+      - hasDocuments:
+          count: 0
