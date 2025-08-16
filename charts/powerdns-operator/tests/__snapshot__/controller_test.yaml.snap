@@ -8,8 +8,8 @@ should match snapshot of default values:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.5.0
-        helm.sh/chart: powerdns-operator-0.5.1
+        app.kubernetes.io/version: 0.6.0
+        helm.sh/chart: powerdns-operator-0.6.0
       name: RELEASE-NAME-powerdns-operator
       namespace: NAMESPACE
     spec:
@@ -25,8 +25,8 @@ should match snapshot of default values:
             app.kubernetes.io/instance: RELEASE-NAME
             app.kubernetes.io/managed-by: Helm
             app.kubernetes.io/name: powerdns-operator
-            app.kubernetes.io/version: 0.5.0
-            helm.sh/chart: powerdns-operator-0.5.1
+            app.kubernetes.io/version: 0.6.0
+            helm.sh/chart: powerdns-operator-0.6.0
         spec:
           containers:
             - args:
@@ -41,7 +41,7 @@ should match snapshot of default values:
               envFrom:
                 - secretRef:
                     name: powerdns-api-credentials
-              image: ghcr.io/powerdns-operator/powerdns-operator:v0.5.0
+              image: ghcr.io/powerdns-operator/powerdns-operator:v0.6.0
               imagePullPolicy: IfNotPresent
               livenessProbe:
                 httpGet:
@@ -93,8 +93,8 @@ should match snapshot with CA certificate configuration:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.5.0
-        helm.sh/chart: powerdns-operator-0.5.1
+        app.kubernetes.io/version: 0.6.0
+        helm.sh/chart: powerdns-operator-0.6.0
       name: RELEASE-NAME-powerdns-operator
       namespace: NAMESPACE
     spec:
@@ -110,8 +110,8 @@ should match snapshot with CA certificate configuration:
             app.kubernetes.io/instance: RELEASE-NAME
             app.kubernetes.io/managed-by: Helm
             app.kubernetes.io/name: powerdns-operator
-            app.kubernetes.io/version: 0.5.0
-            helm.sh/chart: powerdns-operator-0.5.1
+            app.kubernetes.io/version: 0.6.0
+            helm.sh/chart: powerdns-operator-0.6.0
         spec:
           containers:
             - args:
@@ -127,7 +127,7 @@ should match snapshot with CA certificate configuration:
               envFrom:
                 - secretRef:
                     name: powerdns-api-credentials
-              image: ghcr.io/powerdns-operator/powerdns-operator:v0.5.0
+              image: ghcr.io/powerdns-operator/powerdns-operator:v0.6.0
               imagePullPolicy: IfNotPresent
               livenessProbe:
                 httpGet:
@@ -190,8 +190,8 @@ should match snapshot with existing ConfigMap configuration:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.5.0
-        helm.sh/chart: powerdns-operator-0.5.1
+        app.kubernetes.io/version: 0.6.0
+        helm.sh/chart: powerdns-operator-0.6.0
       name: RELEASE-NAME-powerdns-operator
       namespace: NAMESPACE
     spec:
@@ -207,8 +207,8 @@ should match snapshot with existing ConfigMap configuration:
             app.kubernetes.io/instance: RELEASE-NAME
             app.kubernetes.io/managed-by: Helm
             app.kubernetes.io/name: powerdns-operator
-            app.kubernetes.io/version: 0.5.0
-            helm.sh/chart: powerdns-operator-0.5.1
+            app.kubernetes.io/version: 0.6.0
+            helm.sh/chart: powerdns-operator-0.6.0
         spec:
           containers:
             - args:
@@ -224,7 +224,7 @@ should match snapshot with existing ConfigMap configuration:
               envFrom:
                 - secretRef:
                     name: powerdns-api-credentials
-              image: ghcr.io/powerdns-operator/powerdns-operator:v0.5.0
+              image: ghcr.io/powerdns-operator/powerdns-operator:v0.6.0
               imagePullPolicy: IfNotPresent
               livenessProbe:
                 httpGet:
@@ -287,8 +287,8 @@ should match snapshot with insecure TLS configuration:
         app.kubernetes.io/instance: RELEASE-NAME
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/name: powerdns-operator
-        app.kubernetes.io/version: 0.5.0
-        helm.sh/chart: powerdns-operator-0.5.1
+        app.kubernetes.io/version: 0.6.0
+        helm.sh/chart: powerdns-operator-0.6.0
       name: RELEASE-NAME-powerdns-operator
       namespace: NAMESPACE
     spec:
@@ -304,8 +304,8 @@ should match snapshot with insecure TLS configuration:
             app.kubernetes.io/instance: RELEASE-NAME
             app.kubernetes.io/managed-by: Helm
             app.kubernetes.io/name: powerdns-operator
-            app.kubernetes.io/version: 0.5.0
-            helm.sh/chart: powerdns-operator-0.5.1
+            app.kubernetes.io/version: 0.6.0
+            helm.sh/chart: powerdns-operator-0.6.0
         spec:
           containers:
             - args:
@@ -321,7 +321,7 @@ should match snapshot with insecure TLS configuration:
               envFrom:
                 - secretRef:
                     name: powerdns-api-credentials
-              image: ghcr.io/powerdns-operator/powerdns-operator:v0.5.0
+              image: ghcr.io/powerdns-operator/powerdns-operator:v0.6.0
               imagePullPolicy: IfNotPresent
               livenessProbe:
                 httpGet:
