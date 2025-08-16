@@ -1,0 +1,11 @@
+{{- if and .Values.api.tls.caCert (not .Values.api.tls.existingConfigMap) }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    {{- include "powerdns-operator.labels" . | nindent 4 }}
+  name: {{ include "powerdns-operator.fullname" . }}-ca-cert
+  namespace: {{ .Release.Namespace }}
+data:
+  {{ .Values.api.tls.configMapKey }}: {{ .Values.api.tls.caCert | quote }}
+{{- end }}

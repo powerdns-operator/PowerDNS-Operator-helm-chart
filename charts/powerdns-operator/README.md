@@ -32,6 +32,11 @@ The command removes all the Kubernetes components associated with the chart and 
 | affinity | object | `{}` |  |
 | annotations | object | `{}` | Annotations to add to the controller deployment. |
 | api.timeoutSeconds | int | `10` | Specifies timeout to connect to PowerDNS (in seconds) |
+| api.tls | object | `{"caCert":"","configMapKey":"ca.crt","existingConfigMap":"","insecure":false}` | Custom CA certificate for validating HTTPS connections to the PowerDNS API (optional) |
+| api.tls.caCert | string | `""` | CA certificate content (only used if existingConfigMap is empty) |
+| api.tls.configMapKey | string | `"ca.crt"` | ConfigMap key containing the CA certificate (default: ca.crt) |
+| api.tls.existingConfigMap | string | `""` | Name of existing ConfigMap containing the CA certificate |
+| api.tls.insecure | bool | `false` | Skip PowerDNS API TLS certificate verification |
 | api.url | string | `"https://powerdns.example.local:8081"` | Specifies the PowerDNS API URL |
 | api.vhost | string | `"localhost"` | Specifies the PowerDNS VHOST |
 | commonLabels | object | `{}` |  |

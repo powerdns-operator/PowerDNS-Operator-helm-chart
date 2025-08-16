@@ -83,3 +83,283 @@ should match snapshot of default values:
             runAsNonRoot: true
           serviceAccountName: RELEASE-NAME-powerdns-operator
           terminationGracePeriodSeconds: 10
+should match snapshot with CA certificate configuration:
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/component: controller
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: powerdns-operator
+        app.kubernetes.io/version: 0.5.0
+        helm.sh/chart: powerdns-operator-0.5.1
+      name: RELEASE-NAME-powerdns-operator
+      namespace: NAMESPACE
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: powerdns-operator
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/component: controller
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/managed-by: Helm
+            app.kubernetes.io/name: powerdns-operator
+            app.kubernetes.io/version: 0.5.0
+            helm.sh/chart: powerdns-operator-0.5.1
+        spec:
+          containers:
+            - args:
+                - --leader-elect
+                - --health-probe-bind-address=:8081
+                - --metrics-bind-address=:8080
+                - --pdns-api-url=https://powerdns.example.local:8081
+                - --pdns-api-vhost=localhost
+                - --pdns-api-timeout=10
+                - --pdns-api-ca-path=/certs/ca.crt
+              command:
+                - /manager
+              envFrom:
+                - secretRef:
+                    name: powerdns-api-credentials
+              image: ghcr.io/powerdns-operator/powerdns-operator:v0.5.0
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                httpGet:
+                  path: /healthz
+                  port: 8081
+                initialDelaySeconds: 15
+                periodSeconds: 20
+              name: powerdns-operator
+              ports:
+                - containerPort: 8080
+                  name: http-metrics
+                  protocol: TCP
+              readinessProbe:
+                httpGet:
+                  path: /readyz
+                  port: 8081
+                initialDelaySeconds: 5
+                periodSeconds: 10
+              resources:
+                limits:
+                  cpu: 500m
+                  memory: 128Mi
+                requests:
+                  cpu: 10m
+                  memory: 64Mi
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop:
+                    - ALL
+                readOnlyRootFilesystem: true
+                runAsNonRoot: true
+                runAsUser: 1000
+                seccompProfile:
+                  type: RuntimeDefault
+              volumeMounts:
+                - mountPath: /certs
+                  name: ca-cert
+                  readOnly: true
+          dnsPolicy: ClusterFirst
+          hostNetwork: false
+          securityContext:
+            runAsNonRoot: true
+          serviceAccountName: RELEASE-NAME-powerdns-operator
+          terminationGracePeriodSeconds: 10
+          volumes:
+            - configMap:
+                items:
+                  - key: ca.crt
+                    path: ca.crt
+                name: RELEASE-NAME-powerdns-operator-ca-cert
+              name: ca-cert
+should match snapshot with existing ConfigMap configuration:
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/component: controller
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: powerdns-operator
+        app.kubernetes.io/version: 0.5.0
+        helm.sh/chart: powerdns-operator-0.5.1
+      name: RELEASE-NAME-powerdns-operator
+      namespace: NAMESPACE
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: powerdns-operator
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/component: controller
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/managed-by: Helm
+            app.kubernetes.io/name: powerdns-operator
+            app.kubernetes.io/version: 0.5.0
+            helm.sh/chart: powerdns-operator-0.5.1
+        spec:
+          containers:
+            - args:
+                - --leader-elect
+                - --health-probe-bind-address=:8081
+                - --metrics-bind-address=:8080
+                - --pdns-api-url=https://powerdns.example.local:8081
+                - --pdns-api-vhost=localhost
+                - --pdns-api-timeout=10
+                - --pdns-api-ca-path=/certs/ca.crt
+              command:
+                - /manager
+              envFrom:
+                - secretRef:
+                    name: powerdns-api-credentials
+              image: ghcr.io/powerdns-operator/powerdns-operator:v0.5.0
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                httpGet:
+                  path: /healthz
+                  port: 8081
+                initialDelaySeconds: 15
+                periodSeconds: 20
+              name: powerdns-operator
+              ports:
+                - containerPort: 8080
+                  name: http-metrics
+                  protocol: TCP
+              readinessProbe:
+                httpGet:
+                  path: /readyz
+                  port: 8081
+                initialDelaySeconds: 5
+                periodSeconds: 10
+              resources:
+                limits:
+                  cpu: 500m
+                  memory: 128Mi
+                requests:
+                  cpu: 10m
+                  memory: 64Mi
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop:
+                    - ALL
+                readOnlyRootFilesystem: true
+                runAsNonRoot: true
+                runAsUser: 1000
+                seccompProfile:
+                  type: RuntimeDefault
+              volumeMounts:
+                - mountPath: /certs
+                  name: ca-cert
+                  readOnly: true
+          dnsPolicy: ClusterFirst
+          hostNetwork: false
+          securityContext:
+            runAsNonRoot: true
+          serviceAccountName: RELEASE-NAME-powerdns-operator
+          terminationGracePeriodSeconds: 10
+          volumes:
+            - configMap:
+                items:
+                  - key: ca.crt
+                    path: ca.crt
+                name: my-ca-configmap
+              name: ca-cert
+should match snapshot with insecure TLS configuration:
+  1: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/component: controller
+        app.kubernetes.io/instance: RELEASE-NAME
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/name: powerdns-operator
+        app.kubernetes.io/version: 0.5.0
+        helm.sh/chart: powerdns-operator-0.5.1
+      name: RELEASE-NAME-powerdns-operator
+      namespace: NAMESPACE
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app.kubernetes.io/instance: RELEASE-NAME
+          app.kubernetes.io/name: powerdns-operator
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/component: controller
+            app.kubernetes.io/instance: RELEASE-NAME
+            app.kubernetes.io/managed-by: Helm
+            app.kubernetes.io/name: powerdns-operator
+            app.kubernetes.io/version: 0.5.0
+            helm.sh/chart: powerdns-operator-0.5.1
+        spec:
+          containers:
+            - args:
+                - --leader-elect
+                - --health-probe-bind-address=:8081
+                - --metrics-bind-address=:8080
+                - --pdns-api-url=https://powerdns.example.local:8081
+                - --pdns-api-vhost=localhost
+                - --pdns-api-timeout=10
+                - --pdns-api-insecure
+              command:
+                - /manager
+              envFrom:
+                - secretRef:
+                    name: powerdns-api-credentials
+              image: ghcr.io/powerdns-operator/powerdns-operator:v0.5.0
+              imagePullPolicy: IfNotPresent
+              livenessProbe:
+                httpGet:
+                  path: /healthz
+                  port: 8081
+                initialDelaySeconds: 15
+                periodSeconds: 20
+              name: powerdns-operator
+              ports:
+                - containerPort: 8080
+                  name: http-metrics
+                  protocol: TCP
+              readinessProbe:
+                httpGet:
+                  path: /readyz
+                  port: 8081
+                initialDelaySeconds: 5
+                periodSeconds: 10
+              resources:
+                limits:
+                  cpu: 500m
+                  memory: 128Mi
+                requests:
+                  cpu: 10m
+                  memory: 64Mi
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop:
+                    - ALL
+                readOnlyRootFilesystem: true
+                runAsNonRoot: true
+                runAsUser: 1000
+                seccompProfile:
+                  type: RuntimeDefault
+          dnsPolicy: ClusterFirst
+          hostNetwork: false
+          securityContext:
+            runAsNonRoot: true
+          serviceAccountName: RELEASE-NAME-powerdns-operator
+          terminationGracePeriodSeconds: 10
